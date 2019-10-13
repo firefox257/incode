@@ -132,19 +132,19 @@ var b64=(function()
 				
 				return ab;
 			},
-			encstr:function(t)
+			encStr:function(t)
 			{
 				return this.enc(str2ab(t));
 			},
-			decstr:function(t)
+			decStr:function(t)
 			{
 				return ab2str(this.dec(t));
 			},
-			encstrUtf8:function(t)
+			encStrUtf8:function(t)
 			{
 				return this.enc(str2abUtf8(t));
 			},
-			decstrUtf8:function(t)
+			decStrUtf8:function(t)
 			{
 				
 			}
