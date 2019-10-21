@@ -116,6 +116,85 @@ var $c=(function()
 			|| t[at]=="\""
 			|| t[at]=="'";
 		}
+		function nextString()
+		{
+			var i = 0;
+			var str = "";
+			if(t[at]=="R"&& t[at+1]=="\"" && t[at+2]=="(")
+			{
+				str = "R(\"";
+				i+=3;
+				while(!(t[at + i] == ")" && t[at +i + 1] == "\"")  )
+				{
+					if(t[at] == "\")
+					{
+						str += t[at + i];
+						i++;
+						str += t[at + i]
+						i++;
+					}
+					else
+					{
+						str += t[at +i];
+						i++;
+					}
+					
+				}
+				i+=2;
+				str += ")\"";
+				at+=i;
+				return "";
+			}
+			else if(t[at]=="\"")
+			{
+				str = "\"";
+				while(t[at + i] != "\"")
+				{
+					if(t[at] == "\")
+					{
+						str += t[at + i];
+						i++;
+						str += t[at + i]
+						i++;
+					}
+					else
+					{
+						str += t[at +i];
+						i++;
+					}
+				}
+				i++;
+				str += "\"";
+				at +=i;
+				return "";
+			}
+			else if(t[at]=="'")
+			{
+				
+				str = "'";
+				while(t[at + i] != "'")
+				{
+					if(t[at] == "\")
+					{
+						str += t[at + i];
+						i++;
+						str += t[at + i]
+						i++;
+					}
+					else
+					{
+						str += t[at +i];
+						i++;
+					}
+				}
+				i++;
+				str += "'";
+				at +=i;
+				return "";
+			}
+			
+			return "";
+		}
 		
 		function isPrim(t)
 		{
