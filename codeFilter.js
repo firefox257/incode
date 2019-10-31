@@ -86,6 +86,11 @@ $codeFilter=(function()
 						i++
 						tc--;
 					}
+					else if(strEq(tx,"=>",i))
+					{
+						s+="=>";
+						i+=2;
+					}
 					else if(strEq(tx,"/>",i))
 					{
 						s+="/>";
