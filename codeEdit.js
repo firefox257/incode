@@ -1,10 +1,9 @@
 
-
-   function codeedit(id) 
+function codeedit(id) 
    {
        
-       var o=$q.s(id);
-       o.b(['keydown'],function(e)
+       var o=document.querySelector(id);
+       o.addEventListener('keydown',function(e)
        {
            if(e.keyCode==9)
            {
@@ -12,12 +11,12 @@
                e.preventDefault();
            }
        });
-       o.b(['keyup'],function(e)
+       o.addEventListener('keyup',function(e)
        {
            if(e.keyCode==13)
            {
-               var s1=o.$at.selectionStart-1;
-               var tx=o.val();
+               var s1=o.selectionStart-1;
+               var tx=o.value;
                var tabc=0;
                var ttab=0;
                while(s1>=0 &&(tx[s1]=='\r' || tx[s1]=='\n'))s1--;
@@ -30,23 +29,23 @@
                while(tx[s1+tabc]=='\t')tabc++;
                for(var i=0;i<tabc+ttab;i++)document.execCommand("insertText",true,"\t");
            }
-           o.html(o.val());
+           o.innerHTML = o.value;
        });
        
-       var top = o.attr('atscroll');
-       o.$at.scrollTop=parseInt(top);
+       var top = o.getAttribute('atscroll');
+       o.scrollTop=parseInt(top);
        
        function pointup(e)
        {
            
-           o.attr('atscroll',o.$at.scrollTop);
+           o.setAttribute('atscroll',o.scrollTop);
        }
-       o.b(['mouseup','touchend'],pointup);
+       o.addEventListener('mouseup',pointup);
+	   o.addEventListener('touchend',pointup);
        
-       o.b(['change'],function()
+       o.addEventListener('change',function()
        {
-           o.html(o.val());
+           o.innerHTML = o.value;
        });
        
    }
-   
